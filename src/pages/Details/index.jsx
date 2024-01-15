@@ -3,12 +3,14 @@ import { Header } from '../Header'
 import { Section } from '../../components/Section'
 import { Tag } from '../../components/Tag'
 import { Button } from '../../components/Button'
+import { ButtonText } from '../../components/ButtonText'
 
 import { Container, Links } from './styles'
 export const Details = () => {
   return (
     <Container>
-      <Header></Header>
+      <Header />
+      <ButtonText title={'Delete note'}/>
       <Section title='Useful links'>
         <Links>
           <li>
