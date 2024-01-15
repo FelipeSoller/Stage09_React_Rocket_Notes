@@ -8,7 +8,7 @@ import { Note } from '../../components/Note'
 
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
 
-export function Home() {
+export const Home = () => {
   return (
     <Container>
       <Brand>

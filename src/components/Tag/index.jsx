@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles'
 
-export function Tag({ title, ...rest }) {
+export const Tag = ({ title, ...rest }) => {
   return (
     <Container {...rest}>
       {title}

@@ -4,7 +4,7 @@ import { Tag } from '../Tag'
 
 import { Container } from './styles'
 
-export function Note({ data, ...rest }) {
+export const Note = ({ data, ...rest }) => {
   return (
     <Container {...rest}>
       <h1>{data.title}</h1>
