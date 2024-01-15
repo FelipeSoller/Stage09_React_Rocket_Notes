@@ -5,7 +5,7 @@ import { Button } from '../../components/Button'
 
 import { Background, Container, Form } from './styles'
 
-export function SignIn() {
+export const SignIn = () => {
   return (
     <Container>
       <Form>
