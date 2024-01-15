@@ -1,11 +1,10 @@
 import { Button } from '../../components/Button'
+import { Header } from '../Header'
 import { Container } from './styles'
 export const Details = () => {
   return (
     <Container>
-      <h1>Details</h1>
-      <Button title='Entrar' loading/>
-      <Button title='Cadastrar' />
+      <Header></Header>
       <Button title='Voltar' />
     </Container>
   )
