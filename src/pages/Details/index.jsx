@@ -1,4 +1,4 @@
-import { Header } from '../Header'
+import { Header } from '../../components/Header'
 
 import { Section } from '../../components/Section'
 import { Tag } from '../../components/Tag'
