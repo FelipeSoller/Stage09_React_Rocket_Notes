@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
 import { TextArea } from '../../components/TextArea'
@@ -15,8 +17,8 @@ export const New = () => {
       <main>
         <Form>
           <header>
-            <h1>Criar nota</h1>
-            <a href="/">voltar</a>
+            <h1>Create note</h1>
+            <Link to="/">back</Link>
           </header>
 
           <Input placeholder="Título" />

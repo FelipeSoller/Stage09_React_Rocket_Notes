@@ -6,7 +6,7 @@ import { AppRoutes } from './app.routes'
 export const Routes = () => {
   return (
     <BrowserRouter>
-      <AuthRoutes />
+      <AppRoutes />
     </BrowserRouter>
   )
 }

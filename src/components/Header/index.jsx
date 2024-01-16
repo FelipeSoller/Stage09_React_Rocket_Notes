@@ -4,7 +4,7 @@ import { Container, Profile, Logout } from "./styles"
 export const Header = () => {
   return (
     <Container>
-      <Profile>
+      <Profile to='/profile'>
         <img
           src="https://github.com/felipesoller.png"
           alt="Github profile avatar"
