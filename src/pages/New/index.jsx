@@ -21,22 +21,22 @@ export const New = () => {
             <Link to="/">back</Link>
           </header>
 
-          <Input placeholder="Título" />
-          <TextArea placeholder="Observações" />
+          <Input placeholder="Title" />
+          <TextArea placeholder="Description" />
 
-          <Section title="Links úteis">
+          <Section title="Useful links">
             <NoteItem value="https://rocketseat.com.br" />
-            <NoteItem isNew placeholder="Novo link" />
+            <NoteItem isNew placeholder="New link" />
           </Section>
 
-          <Section title="Marcadores">
+          <Section title="Tags">
             <div className="tags">
               <NoteItem value="react" />
-              <NoteItem isNew placeholder="Nova tag" />
+              <NoteItem isNew placeholder="New tag" />
             </div>
           </Section>
 
-          <Button title="Salvar" />
+          <Button title="Save" />
         </Form>
       </main>
     </Container>
