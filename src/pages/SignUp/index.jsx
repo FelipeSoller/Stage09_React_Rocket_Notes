@@ -4,6 +4,7 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 
 import { Container, Form, Background } from './styles'
+import { Link } from 'react-router-dom'
 
 export const SignUp = () => {
   return (
@@ -36,7 +37,7 @@ export const SignUp = () => {
 
         <Button title="Register" />
 
-        <a href="#">Back to Sign In</a>
+        <Link to='/'>Back to Sign In</Link>
       </Form>
     </Container>
   )
