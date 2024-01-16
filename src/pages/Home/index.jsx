@@ -18,7 +18,7 @@ export const Home = () => {
       <Header />
 
       <Menu>
-        <li><ButtonText title="All" $isactive={true} /></li>
+        <li><ButtonText title="All" isActive={true} /></li>
         <li><ButtonText title="React" /></li>
         <li><ButtonText title="Node.JS" /></li>
       </Menu>
