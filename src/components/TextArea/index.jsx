@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Container } from './styles'
 
-export const Textarea = ({ value, ...rest }) => {
+export const TextArea = ({ value, ...rest }) => {
   return (
     <Container {...rest}>
       {value}
@@ -9,6 +9,6 @@ export const Textarea = ({ value, ...rest }) => {
   )
 }
 
-Textarea.propTypes = {
+TextArea.propTypes = {
   value: PropTypes.string
 }
