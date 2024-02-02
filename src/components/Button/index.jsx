@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Container } from './styles'
 
-export const Button = ({ title, loading = false }) => {
+export const Button = ({ title, loading = false, onClick }) => {
   return(
     <Container
       type='button'
       disabled={loading}
+      onClick={onClick}
     >
       { loading ? 'Carregando...' : title }
     </Container>
@@ -14,5 +15,6 @@ export const Button = ({ title, loading = false }) => {
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  onClick: PropTypes.func
 };
