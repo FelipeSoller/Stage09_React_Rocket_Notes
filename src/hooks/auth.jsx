@@ -29,6 +29,13 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  const signOut = () => {
+    localStorage.removeItem('@RocketNotes:user')
+    localStorage.removeItem('@RocketNotes:token')
+
+    setData({})
+  }
+
   useEffect(() => {
     const user = localStorage.getItem('@RocketNotes:user')
     const token = localStorage.getItem('@RocketNotes:token')
@@ -44,7 +51,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
       { children }
     </AuthContext.Provider>
   )
