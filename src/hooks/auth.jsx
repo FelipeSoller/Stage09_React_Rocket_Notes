@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('@RocketNotes:user', JSON.stringify(user))
       localStorage.setItem('@RocketNotes:token', token)
 
-      api.defaults.headers.Authorization = `Bearer ${token}`
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       setData({ user, token })
 
@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('@RocketNotes:token')
 
     if(user && token) {
-      api.defaults.headers.Authorization = `Bearer ${token}`
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       setData({
         user: JSON.parse(user),
