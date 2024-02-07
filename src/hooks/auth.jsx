@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 import { api } from "../service/api"
@@ -13,10 +13,12 @@ const AuthProvider = ({ children }) => {
       const response = await api.post('sessions', { email, password})
       const { user, token } = response.data
 
+      localStorage.setItem('@RocketNotes:user', JSON.stringify(user))
+      localStorage.setItem('@RocketNotes:token', token)
+
       api.defaults.headers.Authorization = `Bearer ${token}`
 
       setData({ user, token })
-
 
     } catch(error) {
       if(error.response) {
@@ -26,6 +28,20 @@ const AuthProvider = ({ children }) => {
       }
     }
   }
+
+  useEffect(() => {
+    const user = localStorage.getItem('@RocketNotes:user')
+    const token = localStorage.getItem('@RocketNotes:token')
+
+    if(user && token) {
+      api.defaults.headers.Authorization = `Bearer ${token}`
+
+      setData({
+        user: JSON.parse(user),
+        token
+      })
+    }
+  }, [])
 
   return (
     <AuthContext.Provider value={{ signIn, user: data.user }}>
