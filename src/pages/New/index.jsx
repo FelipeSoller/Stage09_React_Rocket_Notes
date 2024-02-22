@@ -8,8 +8,25 @@ import { NoteItem } from '../../components/NoteItem'
 import { Button } from '../../components/Button'
 
 import { Container, Form } from './styles'
+import { useState } from 'react'
 
 export const New = () => {
+  const [links, setLinks] = useState([])
+  const [newLink, setNewLink] = useState('')
+
+  const handleAddLink = () => {
+    setLinks(prevState => [
+      ...prevState,
+      newLink
+    ])
+
+    setNewLink('')
+  }
+
+  const handleRemoveLink = (deleted) => {
+    setLinks(prevState => prevState.filter(link => link !== deleted))
+  }
+
   return (
     <Container>
       <Header />
@@ -25,8 +42,16 @@ export const New = () => {
           <TextArea placeholder="Description" />
 
           <Section title="Useful links">
-            <NoteItem value="https://rocketseat.com.br" />
-            <NoteItem isNew placeholder="New link" />
+            {links.map((link, index) => {
+              return (
+                <NoteItem
+                  key={String(index)}
+                  value={link}
+                  onClick={() => handleRemoveLink(link)}
+                />
+              )
+            })}
+            <NoteItem isNew placeholder="New link" value={newLink} onChange={e => setNewLink(e.target.value)} onClick={handleAddLink} />
           </Section>
 
           <Section title="Tags">
