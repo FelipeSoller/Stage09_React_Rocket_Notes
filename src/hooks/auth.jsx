@@ -36,8 +36,16 @@ const AuthProvider = ({ children }) => {
     setData({})
   }
 
-  const updateProfile = async ({ user }) => {
+  const updateProfile = async ({ user, avatarFile }) => {
     try {
+      if(avatarFile) {
+        const fileUploadForm = new FormData()
+        fileUploadForm.append('avatar', avatarFile)
+
+        const response = await api.patch('/users/avatar', fileUploadForm)
+        user.avatar = response.data.avatar
+      }
+
       await api.put('/users', user)
 
       localStorage.setItem('@RocketNotes:user', JSON.stringify(user))
