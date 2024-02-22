@@ -36,6 +36,24 @@ const AuthProvider = ({ children }) => {
     setData({})
   }
 
+  const updateProfile = async ({ user }) => {
+    try {
+      await api.put('/users', user)
+
+      localStorage.setItem('@RocketNotes:user', JSON.stringify(user))
+
+      setData({ user, token: data.token })
+
+      alert('Profile updated successfully')
+    } catch (error) {
+      if(error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert('Profile cannot be updated! Try again.')
+      }
+    }
+  }
+
   useEffect(() => {
     const user = localStorage.getItem('@RocketNotes:user')
     const token = localStorage.getItem('@RocketNotes:token')
@@ -51,7 +69,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, signOut, updateProfile, user: data.user }}>
       { children }
     </AuthContext.Provider>
   )
