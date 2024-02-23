@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
@@ -6,16 +6,22 @@ import { TextArea } from '../../components/TextArea'
 import { Section } from '../../components/Section'
 import { NoteItem } from '../../components/NoteItem'
 import { Button } from '../../components/Button'
+import { api } from '../../service/api'
 
 import { Container, Form } from './styles'
 import { useState } from 'react'
 
 export const New = () => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+
   const [links, setLinks] = useState([])
   const [newLink, setNewLink] = useState('')
 
   const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState('')
+
+  const navigate = useNavigate()
 
   const handleAddLink = () => {
     setLinks(prevState => [
@@ -43,6 +49,30 @@ export const New = () => {
     setTags(prevState => prevState.filter(tag => tag !== deleted))
   }
 
+  const handleNewNote = async () => {
+    if(!title) {
+      return alert('The title is required')
+    }
+
+    if(newLink) {
+      return alert('You must click in + to add a new link')
+    }
+
+    if(newTag) {
+      return alert('You must click in + to add a new tag')
+    }
+
+    await api.post('/notes', {
+      title,
+      description,
+      tags,
+      links
+    })
+
+    alert('Note created successfully!')
+    navigate('/')
+  }
+
   return (
     <Container>
       <Header />
@@ -54,8 +84,8 @@ export const New = () => {
             <Link to="/">back</Link>
           </header>
 
-          <Input placeholder="Title" />
-          <TextArea placeholder="Description" />
+          <Input placeholder="Title" onChange={e => setTitle(e.target.value)} />
+          <TextArea placeholder="Description" onChange={e => setDescription(e.target.value)} />
 
           <Section title="Useful links">
             {links.map((link, index) => {
@@ -85,7 +115,7 @@ export const New = () => {
             </div>
           </Section>
 
-          <Button title="Save" />
+          <Button title="Save" onClick={handleNewNote}/>
         </Form>
       </main>
     </Container>
