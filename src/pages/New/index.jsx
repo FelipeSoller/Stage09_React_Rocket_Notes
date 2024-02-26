@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
@@ -10,6 +10,7 @@ import { api } from '../../service/api'
 
 import { Container, Form } from './styles'
 import { useState } from 'react'
+import { ButtonText } from '../../components/ButtonText'
 
 export const New = () => {
   const [title, setTitle] = useState('')
@@ -70,7 +71,11 @@ export const New = () => {
     })
 
     alert('Note created successfully!')
-    navigate('/')
+    navigate(-1)
+  }
+
+  const handleBack = () => {
+    navigate(-1)
   }
 
   return (
@@ -81,7 +86,7 @@ export const New = () => {
         <Form>
           <header>
             <h1>Create note</h1>
-            <Link to="/">back</Link>
+            <ButtonText onClick={handleBack} title="Back" />
           </header>
 
           <Input placeholder="Title" onChange={e => setTitle(e.target.value)} />

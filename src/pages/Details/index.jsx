@@ -17,7 +17,7 @@ export const Details = () => {
   const navigate = useNavigate()
 
   const handleBack = () => {
-    navigate('/')
+    navigate(-1)
   }
 
   const handleRemove = async () => {
@@ -25,7 +25,7 @@ export const Details = () => {
 
     if(confirm) {
       await api.delete(`/notes/${params.id}`)
-      navigate('/')
+      navigate(-1)
     }
   }
 

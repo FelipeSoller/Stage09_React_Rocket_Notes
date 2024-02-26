@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FiMail, FiLock, FiUser } from 'react-icons/fi'
 
 import { Input } from '../../components/Input'
@@ -7,6 +7,7 @@ import { Button } from '../../components/Button'
 import { api } from '../../service/api'
 
 import { Container, Form, Background } from './styles'
+import { ButtonText } from '../../components/ButtonText'
 
 export const SignUp = () => {
   const [name, setName] = useState('')
@@ -24,7 +25,7 @@ export const SignUp = () => {
       await api.post('/users', { name, email, password })
 
       alert('User created!')
-      navigate('/')
+      navigate(-1)
     } catch (error) {
       if(error.response) {
         alert(error.response.data.message)
@@ -32,6 +33,10 @@ export const SignUp = () => {
         alert('SignUp failed! Try again.')
       }
     }
+  }
+
+  const handleBack = () => {
+    navigate(-1)
   }
 
   return (
@@ -67,7 +72,7 @@ export const SignUp = () => {
 
         <Button title="Register" onClick={handleSignUp}/>
 
-        <Link to='/'>Back to Sign In</Link>
+        <ButtonText onClick={handleBack} title="Back to Sign In" />
       </Form>
     </Container>
   )
