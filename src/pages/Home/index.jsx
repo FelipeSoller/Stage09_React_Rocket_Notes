@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FiPlus } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 import { api } from '../../service/api'
 
@@ -17,6 +18,8 @@ export const Home = () => {
   const [tags, setTags] = useState([])
   const [tagsSelected, setTagsSelected] = useState([])
 
+  const navigate = useNavigate()
+
 
   const handleTagSelected = (tagName) => {
     if(tagName === 'all') {
@@ -32,6 +35,10 @@ export const Home = () => {
     } else {
       setTagsSelected(prevState => [...prevState, tagName])
     }
+  }
+
+  const handleDetails = (id) => {
+    navigate(`/details/${id}`)
   }
 
   useEffect(() => {
@@ -85,6 +92,7 @@ export const Home = () => {
               <Note
                 key={String(note.id)}
                 data={note}
+                onClick={() => handleDetails(note.id)}
               />
             ))
           }
