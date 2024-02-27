@@ -25,12 +25,14 @@ export const Profile = () => {
   const navigate = useNavigate()
 
   const handleUpdateProfile = async () => {
-    const updatedUser = {
+    const updated = {
       name,
       email,
       password,
       new_password: newPassword
     }
+
+    const updatedUser = Object.assign(user, updated)
 
     await updateProfile({ user: updatedUser, avatarFile })
   }
